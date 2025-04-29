@@ -1,1 +1,1 @@
-# Pr-ctica-2---GUI-amb-Docker
+# Practica-2-GUI-Docker
