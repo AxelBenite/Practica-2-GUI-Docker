@@ -25,7 +25,7 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
 
 # Configuració de l’usuari
 RUN useradd -m -s /bin/bash docker
-RUN echo "docker" | chpasswd
+RUN echo "docker:docker" | chpasswd
 RUN usermod -aG sudo docker
 RUN groupadd docker && usermod -aG docker docker
 
