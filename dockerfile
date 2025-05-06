@@ -24,7 +24,10 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
     rm -f packages.microsoft.gpg
 
 # Configuració de l’usuari
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+RUN useradd -m -s /bin/bash docker
+RUN echo "docker" | chpasswd
+RUN usermod -aG sudo docker
+RUN groupadd docker && usermod -aG docker docker
 
 # SSH configuració bàsica
 RUN mkdir /var/run/sshd
