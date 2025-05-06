@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     openssh-server \
     sudo \
     dbus-x11 \
-    x11-xserver-utils
+    x11-xserver-utils \
+    netstat
 
 # Instal·lació de Visual Studio Code
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
