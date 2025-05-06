@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     sudo \
     dbus-x11 \
     x11-xserver-utils \
-    netstat
+    net-tools
 
 # Instal·lació de Visual Studio Code
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
