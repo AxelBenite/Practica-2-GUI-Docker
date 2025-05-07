@@ -15,7 +15,18 @@ RUN apt-get update && apt-get install -y \
     sudo \
     dbus-x11 \
     x11-xserver-utils \
-    net-tools
+    net-tools \
+    libx11-xcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxrandr2 \
+    libasound2 \
+    libpangocairo-1.0-0 \
+    libatk-bridge2.0-0 \
+    libgtk-3-0 \
+    libnss3 \
+    libxss1
 
 # Instal·lació de Visual Studio Code
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
@@ -50,5 +61,3 @@ RUN echo "docker" | vncpasswd -f > /home/docker/.vnc/passwd && \
 CMD ["/vnc.sh"]
     
 EXPOSE 22 5901
-
-#CMD service ssh start && su - docker -c "vncserver :1 -geometry 1280x800 -depth 24" && tail -f /dev/null
