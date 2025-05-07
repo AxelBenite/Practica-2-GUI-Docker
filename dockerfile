@@ -34,12 +34,21 @@ RUN useradd -m -s /bin/bash docker && \
 RUN mkdir /var/run/sshd
 RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 
+
 # Configuració VNC
+COPY vnc.sh /vnc.sh
+RUN chmod +x /vnc.sh
 USER docker
 RUN mkdir -p /home/docker/.vnc && \
     echo '#!/bin/bash\nxrdb $HOME/.Xresources\nstartxfce4 &' > /home/docker/.vnc/xstartup && \
     chmod +x /home/docker/.vnc/xstartup
 
+RUN echo "docker" | vncpasswd -f > /home/docker/.vnc/passwd && \
+    chmod 600 /home/docker/.vnc/passwd
+
+        
+CMD ["/vnc.sh"]
+    
 EXPOSE 22 5901
 
-CMD ["/bin/bash", "-c", "vncserver :1 -geometry 1280x800 -depth 24 && tail -f /dev/null"]
+#CMD service ssh start && su - docker -c "vncserver :1 -geometry 1280x800 -depth 24" && tail -f /dev/null
