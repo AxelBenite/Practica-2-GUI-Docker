@@ -28,6 +28,16 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     libxss1
 
+# Configuració de l’usuari
+RUN useradd -m -s /bin/bash docker && \
+    echo "docker:docker" | chpasswd && \
+    usermod -aG sudo docker && \
+    groupadd -f docker && usermod -aG docker docker
+
+
+ENV USER=docker \
+    HOME=/home/docker
+
 # Instal·lació de Visual Studio Code
 RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
     install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ && \
@@ -35,11 +45,6 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
     apt-get update && apt-get install -y code && \
     rm -f packages.microsoft.gpg
 
-# Configuració de l’usuari
-RUN useradd -m -s /bin/bash docker && \
-    echo "docker:docker" | chpasswd && \
-    usermod -aG sudo docker && \
-    groupadd -f docker && usermod -aG docker docker
 
 # SSH configuració bàsica
 RUN mkdir /var/run/sshd
@@ -47,17 +52,20 @@ RUN echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config
 
 
 # Configuració VNC
-COPY vnc.sh /vnc.sh
-RUN chmod +x /vnc.sh
+COPY vnc.sh /home/docker/vnc.sh
+RUN chmod +x /home/docker/vnc.sh
+
 USER docker
 RUN mkdir -p /home/docker/.vnc && \
     echo '#!/bin/bash\nxrdb $HOME/.Xresources\nstartxfce4 &' > /home/docker/.vnc/xstartup && \
-    chmod +x /home/docker/.vnc/xstartup
-
-RUN echo "docker" | vncpasswd -f > /home/docker/.vnc/passwd && \
+    chmod +x /home/docker/.vnc/xstartup && \
+    echo "docker" | vncpasswd -f > /home/docker/.vnc/passwd && \
     chmod 600 /home/docker/.vnc/passwd
 
-        
-CMD ["/vnc.sh"]
-    
+USER root
+
+EXPOSE 22 5901
+
+CMD ["/home/docker/vnc.sh"]
+   
 EXPOSE 22 5901
