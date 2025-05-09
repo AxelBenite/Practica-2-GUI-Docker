@@ -39,11 +39,13 @@ ENV USER=docker \
     HOME=/home/docker
 
 # Instal·lació de Visual Studio Code
-RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
-    install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ && \
-    sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
-    apt-get update && apt-get install -y code && \
-    rm -f packages.microsoft.gpg
+RUN wget -O /tmp/code.deb https://update.code.visualstudio.com/latest/linux-deb-x64/stable && \
+    apt install -y /tmp/code.deb && \
+    rm /tmp/code.deb
+RUN mv /usr/bin/code /usr/bin/code-bin && \
+    echo -e '#!/bin/bash\nexec /usr/bin/code-bin --no-sandbox "$@"' > /usr/bin/code && \
+    chmod +x /usr/bin/code
+
 
 
 # SSH configuració bàsica
