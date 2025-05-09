@@ -4,6 +4,7 @@ Aquest Contenidor  conte un sistem ubuntu 24.04 amb un entorn grafic XFCE, un se
 
 ### Actualitzar el Build ###
 docker build -t gui_app .
+
 ### Encendre el Contenidor ###
 Per encendre el contenidor executa el script run.sh
 
