@@ -24,3 +24,6 @@ Pass: Docker
 ### Scripts ###
 He fet 2 scripts en aquest proyecte.
 
+## Apunt ##
+
+He fet la practica al meu portatil y el tinc conectat a la meva compta personal de git HackBepa, per aixo els commits que son desde el portatil surt aquest compte. Moltes Gracies y espero que no tingui importancia.
