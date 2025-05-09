@@ -2,6 +2,13 @@
 
 Aquest Contenidor  conte un sistem ubuntu 24.04 amb un entorn grafic XFCE, un servidor ssh, un servidor vnc, visual studio core y python3.
 
+### Encendre el Contenidor ###
+Per encendre el contenidor executa el script run.sh
+
+## run.sh ##
+
+Aquest es el script encarregat de arrancar i crear el contenidor, tambe he posat un control perque esborri el anteriors per evitar problemes, tambe fa la instancia del servidor VNC/SSH.
+
 ### Conexion Remotes ###
 He utilitzat el client Remmina per fer les proves.
 
@@ -17,6 +24,3 @@ Pass: Docker
 ### Scripts ###
 He fet 2 scripts en aquest proyecte.
 
-## run.sh ##
-
-Aquest es el script encarregat de arrancar i crear el contenidor, tambe he posat un control perque esborri el anteriors per evitar problemes, tambe fa la instancia del servidor VNC.

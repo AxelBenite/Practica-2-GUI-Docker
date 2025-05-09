@@ -58,6 +58,6 @@ RUN mkdir -p /home/docker/.vnc && \
     echo "docker" | vncpasswd -f > /home/docker/.vnc/passwd && \
     chmod 600 /home/docker/.vnc/passwd
 
+# Opertura de Ports
 USER root
-
 EXPOSE 22 5901
