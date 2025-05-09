@@ -2,6 +2,8 @@
 
 Aquest Contenidor  conte un sistem ubuntu 24.04 amb un entorn grafic XFCE, un servidor ssh, un servidor vnc, visual studio core y python3.
 
+### Actualitzar el Build ###
+docker build -t gui_app .
 ### Encendre el Contenidor ###
 Per encendre el contenidor executa el script run.sh
 
