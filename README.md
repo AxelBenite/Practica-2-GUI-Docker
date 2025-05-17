@@ -17,12 +17,12 @@ He utilitzat el client Remmina per fer les proves.
 
 ## SSH ##
 Port Host: 2222
-Usuari: Docker
-Pass: Docker
+Usuari: docker
+Pass: docker
 
 ## VNC ##
 Port Host: 5901
-Pass: Docker
+Pass: docker
 
 ### Scripts ###
 He fet 2 scripts en aquest proyecte.
